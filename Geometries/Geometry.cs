@@ -1,5 +1,6 @@
 ﻿// BoundingBox.cs - New Class
 using Newtonsoft.Json;
+using System.Numerics;
 using System.Text;
 
 namespace FCoreMap.Geometries
@@ -366,6 +367,8 @@ namespace FCoreMap.Geometries
         public int Id { get; set; }
         public BoundingBox BoundingBox { get; private set; }
 
+        public Vector3 From3dPoint { get; set; }
+
         // Default constructor creates an empty polygon
         public PolygonD()
         {
@@ -373,6 +376,7 @@ namespace FCoreMap.Geometries
             IsSelected = false;
             Id = -1;
             BoundingBox = new BoundingBox();
+            From3dPoint = new Vector3(0,0,0);
         }
 
         // Constructor that initializes with a collection of vertices
