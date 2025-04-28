@@ -32,7 +32,7 @@ namespace FCoreMap.Controls
 
     /// </summary>
 
-    public class FCoreMapControlSk : SKGLControl
+    public class FCoreMapControlSk : SKControl
 
     {
 
@@ -1004,7 +1004,7 @@ namespace FCoreMap.Controls
 
         /// </summary>
 
-        protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
+        protected override void OnPaintSurface(SKPaintSurfaceEventArgs e)
 
         {
 
