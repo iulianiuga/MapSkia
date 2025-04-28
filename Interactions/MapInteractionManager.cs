@@ -328,13 +328,24 @@ namespace FCoreMap.Controls
 
                 mapControl.Click += MapControl_Click;
 
-              //  mapControl.KeyDown += MapControl_KeyDown;
+               mapControl.DoubleClick += MapControl_DoubleClick;
+
+
+                //  mapControl.KeyDown += MapControl_KeyDown;
 
 
 
                 UpdateMapCursor();
 
             }
+
+         
+
+
+
+
+
+
 
 
 
@@ -360,7 +371,9 @@ namespace FCoreMap.Controls
 
                 mapControl.Click -= MapControl_Click;
 
-               // mapControl.KeyDown -= MapControl_KeyDown;
+                mapControl.DoubleClick -= MapControl_DoubleClick;
+
+                // mapControl.KeyDown -= MapControl_KeyDown;
 
             }
 
@@ -956,7 +969,20 @@ namespace FCoreMap.Controls
 
             }
 
+            private void MapControl_DoubleClick(object? sender, EventArgs e)
+            {
+                if (!(e is MouseEventArgs me)) return;
 
+                // Handle double-click in polygon editing mode
+                if (behavior == MapBehavior.PolygonDrawing && polygonLayer != null && me.Button == MouseButtons.Left)
+                {
+                    if (isDrawingPolygon && polygonVertices.Count >= 3)
+                    {
+                        // Finalize the polygon
+                        CompletePolygon();
+                    }
+                }
+            }
 
             private void MapControl_Click(object sender, EventArgs e)
 
@@ -987,6 +1013,8 @@ namespace FCoreMap.Controls
                 }
 
                 // Polygon drawing
+
+              
 
                 if (behavior == MapBehavior.PolygonDrawing && polygonLayer != null && me.Button == MouseButtons.Left)
 
@@ -1114,6 +1142,9 @@ namespace FCoreMap.Controls
 
             }
 
+
+
+           
 
 
             private void MapControl_MouseMove(object sender, MouseEventArgs e)

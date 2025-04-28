@@ -250,6 +250,47 @@ namespace FCoreMap.Controls
 
         }
 
+        /// <summary>
+        /// Deletes the currently selected polygon in polygon editing mode.
+        /// </summary>
+        /// <returns>True if a polygon was successfully deleted, false otherwise.</returns>
+        public bool DeleteSelectedPolygon()
+        {
+            // Check if we're in polygon editing mode and have a polygon layer
+            if (interactionManager.Behavior != MapBehavior.PolygonEditing ||
+                interactionManager.PolygonDrawingLayer == null)
+            {
+                return false;
+            }
+
+            // Get the selected polygon
+            PolygonD polygon = interactionManager.SelectedPolygon;
+            if (polygon == null)
+            {
+                return false;
+            }
+
+            // Get the layer
+            Layer layer = interactionManager.PolygonDrawingLayer;
+
+            // Record the ID before removing
+            int polygonId = polygon.Id;
+
+            // Remove the polygon from the layer
+            bool success = layer.RemovePolygonAt(polygonId);
+
+            if (success)
+            {
+                // After deletion, restart polygon editing mode to reset selection state
+                StartPolygonEditing(layer);
+
+                // Redraw the map
+                Invalidate();
+            }
+
+            return success;
+        }
+
 
 
         private void InteractionManager_PolygonDrawn(object sender, PolygonEventArgs e)
@@ -896,7 +937,46 @@ namespace FCoreMap.Controls
 
         }
 
+        /// <summary>
+        /// Deletes the currently selected circle in circle editing mode.
+        /// </summary>
+        /// <returns>True if a circle was successfully deleted, false otherwise.</returns>
+        public bool DeleteSelectedCircle()
+        {
+            // Check if we're in circle editing mode and have a circle layer
+            if (interactionManager.Behavior != MapBehavior.CircleEditing ||
+                interactionManager.CircleDrawingLayer == null)
+            {
+                return false;
+            }
 
+            // Get the selected circle
+            CircleD circle = interactionManager.SelectedCircle;
+            if (circle == null)
+            {
+                return false;
+            }
+
+            // Get the layer
+            Layer layer = interactionManager.CircleDrawingLayer;
+
+            // Record the ID before removing
+            int circleId = circle.Id;
+
+            // Remove the circle from the layer
+            bool success = layer.RemoveCircleAt(circleId);
+
+            if (success)
+            {
+                // After deletion, restart circle editing mode to reset selection state
+                StartCircleEditing(layer);
+
+                // Redraw the map
+                Invalidate();
+            }
+
+            return success;
+        }
 
         /// <summary>
 
@@ -924,7 +1004,7 @@ namespace FCoreMap.Controls
 
         /// </summary>
 
-        protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs  e)
+        protected override void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
 
         {
 
