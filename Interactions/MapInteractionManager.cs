@@ -1661,7 +1661,7 @@ namespace FCoreMap.Controls
 
                         var sp = transformer.WorldToScreen((float)pt.X, (float)pt.Y);
 
-                        float psize = sel ? (i == selectedPointIndex ? 12 : 10) : 8;
+                        float psize = sel ? (i == selectedPointIndex ? 16 : 14) : 8;
 
                         SKColor fill = sel ? (i == selectedPointIndex ? SKColors.Yellow : SKColors.Orange) : SKColors.Red;
 
@@ -1865,7 +1865,7 @@ namespace FCoreMap.Controls
 
                         var sp = transformer.WorldToScreen((float)v.X, (float)v.Y);
 
-                        float vsz = i == selectedVertexIndex ? 12 : 10;
+                        float vsz = i == selectedVertexIndex ? 16 : 14;
 
                         SKColor fill = i == selectedVertexIndex ? SKColors.Yellow : SKColors.Orange;
 

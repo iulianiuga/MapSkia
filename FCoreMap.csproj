@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <AssemblyVersion>2025.4.28.406</AssemblyVersion>
+    <AssemblyVersion>2025.4.28.407</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
