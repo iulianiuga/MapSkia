@@ -1,2 +1,2 @@
 # FCoreMap
-# Draw a map (and other) using Skia Sharp
+Draw a map (and other) using Skia Sharp
